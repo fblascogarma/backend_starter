@@ -33,99 +33,40 @@ Every time you want to migrate data to your database, you have to run that comma
 The default db is SQLite but you can change that.
 
 5) To create an API for your app, type
+
 python manage.py startapp api
+
 You need to create an admin user by typing
+
 python manage.py createsuperuser
+
 And you will need to input the username you want to create, an email, and a password.
 
 6) Create a urls.py file in api folder and paste this (check the file in this repo if you want to copy paste; the same with all the rest).
+
 ![alt text](images/urls_in_api.PNG)
 
 7) Go to the urls.py file in the NAME_OF_PROJECT folder and delete what you have there and paste this that will add that new urls.py file from the previous step and also add authentication so only authorized users can call the api.
 ![alt text](images/urls_in_project.PNG)
 
- 
-urlpatterns = [
-   path('admin/', admin.site.urls),
-   path('', include('api.urls')),
-   path('auth/', obtain_auth_token),
-]
-
 8) Go to models.py in api folder, delete what you have there, and create a model by pasting this
 ![alt text](images/models.PNG)
 
-from django.db import models
- 
-class Article(models.Model):                    # you will create a table called Article
-   title = models.CharField(max_length=100)    # ids are created automatically so you don't have to create an id
-   description = models.TextField()
- 
-   def __str__(self):
-       return self.title
-
 9) Register the model created in admin.py in api folder by pasting
 ![alt text](images/admin.PNG)
-from django.contrib import admin
-from .models import Article
- 
-@admin.register(Article)
-class ArticleModel(admin.ModelAdmin):
-   list_filter = ('title', 'description')          # add your filters
-   list_display = ('title', 'description')
 
 10) Create a serializers.py file in the api folder and paste this
 ![alt text](images/serializers.PNG)
-from rest_framework import serializers
-from .models import Article
-from django.contrib.auth.models import User
-from rest_framework.authtoken.views import Token
- 
- 
-class ArticleSerializer(serializers.ModelSerializer):
-   class Meta:
-       model = Article
-       fields = ['id', 'title', 'description']        # fields you want to retrieve from the api
- 
-class UserSerializer(serializers.ModelSerializer):
-   class Meta:
-       model = User
-       fields = ['id', 'username', 'password']
- 
-       extra_kwargs = {'password':{
-           'write_only': True,
-           'required': True
-       }}
- 
-   def create(self, validated_data):
-       user = User.objects.create_user(**validated_data)
-       Token.objects.create(user=user)
-       return user
 
-Comment: A model serializer is preferred over a serializer because it’s more succinct and clear to read. ModelSerializer will automatically generate a set of fields for you based on your model and validators for the serializer.
+A model serializer is preferred over a serializer because it’s more succinct and clear to read. ModelSerializer will automatically generate a set of fields for you based on your model and validators for the serializer.
 
 11) Go to settings.py in NAME_OF_PROJECT folder and add rest_framework, rest_framework.authtoken, and api under INSTALLED_APPS:
 ![alt text](images/installed_apps.PNG)
+
 The rest_framekwork.authtoken is to prevent unauthorized users from creating/deleting/editing information in our backend.
 
 12) Go to views.py in api folder and paste this
 ![alt text](images/views.PNG)
-from django.shortcuts import render
-from .models import Article
-from .serializers import ArticleSerializer, UserSerializer
-from rest_framework import viewsets
-from rest_framework.permissions import AllowAny, IsAuthenticated
-from rest_framework.authentication import TokenAuthentication
-from django.contrib.auth.models import User
- 
-class ArticleViewSet(viewsets.ModelViewSet):
-   queryset = Article.objects.all()
-   serializer_class = ArticleSerializer
-   permission_classes = [IsAuthenticated]
-   authentication_classes = (TokenAuthentication, )
- 
-class UserViewSet(viewsets.ModelViewSet):
-   queryset = User.objects.all()
-   serializer_class = UserSerializer
 
 13) Go to the folder where you have your backend folder project and type 
 python manage.py makemigrations
