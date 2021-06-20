@@ -27,28 +27,7 @@ You should see a spaceship and say the installation worked successfully.
 4) Migrate data to the db by navigating to your NAME_OF_BACKEND_PROJECT folder and typing
 python manage.py migrate
 Make sure you have the venv activated. You will see something like this:
-
-Operations to perform:
-  Apply all migrations: admin, auth, contenttypes, sessions
-Running migrations:
-  Applying contenttypes.0001_initial... OK
-  Applying auth.0001_initial... OK
-  Applying admin.0001_initial... OK
-  Applying admin.0002_logentry_remove_auto_add... OK
-  Applying admin.0003_logentry_add_action_flag_choices... OK
-  Applying contenttypes.0002_remove_content_type_name... OK
-  Applying auth.0002_alter_permission_name_max_length... OK
-  Applying auth.0003_alter_user_email_max_length... OK
-  Applying auth.0004_alter_user_username_opts... OK
-  Applying auth.0005_alter_user_last_login_null... OK
-  Applying auth.0006_require_contenttypes_0002... OK
-  Applying auth.0007_alter_validators_add_error_messages... OK
-  Applying auth.0008_alter_user_username_max_length... OK
-  Applying auth.0009_alter_user_last_name_max_length... OK
-  Applying auth.0010_alter_group_name_max_length... OK
-  Applying auth.0011_update_proxy_permissions... OK
-  Applying auth.0012_alter_user_first_name_max_length... OK
-  Applying sessions.0001_initial... OK
+![alt text](images/migrate_first_one.PNG)
 
 Every time you want to migrate data to your database, you have to run that command.
 The default db is SQLite but you can change that.
@@ -59,26 +38,12 @@ You need to create an admin user by typing
 python manage.py createsuperuser
 And you will need to input the username you want to create, an email, and a password.
 
-6) Create a urls.py file in api folder and paste this (first image and then the code so you can copy paste).
+6) Create a urls.py file in api folder and paste this (check the file in this repo if you want to copy paste; the same with all the rest).
 ![alt text](images/urls_in_api.PNG)
-from django.contrib.auth.models import User
-from django.urls import path, include
-from .views import ArticleViewSet, UserViewSet
-from rest_framework.routers import DefaultRouter
- 
-router = DefaultRouter()
-router.register('articles', ArticleViewSet, basename='articles')
-router.register('users', UserViewSet)
- 
-urlpatterns = [
-   path('api/', include(router.urls)),
-]
 
 7) Go to the urls.py file in the NAME_OF_PROJECT folder and delete what you have there and paste this that will add that new urls.py file from the previous step and also add authentication so only authorized users can call the api.
 ![alt text](images/urls_in_project.PNG)
-from django.contrib import admin
-from django.urls import path, include
-from rest_framework.authtoken.views import obtain_auth_token
+
  
 urlpatterns = [
    path('admin/', admin.site.urls),
