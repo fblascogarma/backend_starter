@@ -8,7 +8,8 @@ If you want to learn different ways of setting your backend using Django, check 
 
 ## Steps
 
-1) Create a virtual environment and activate it.
+1) Create a virtual environment and activate it. If you don't know why this is necessary, check the last section of this file.
+
 2) Install Django by typing
 pip install Django
 Also install Django REST framework by typing
@@ -61,6 +62,7 @@ And you will need to input the username you want to create, an email, and a pass
 A model serializer is preferred over a serializer because it’s more succinct and clear to read. ModelSerializer will automatically generate a set of fields for you based on your model and validators for the serializer.
 
 11) Go to settings.py in NAME_OF_PROJECT folder and add rest_framework, rest_framework.authtoken, and api under INSTALLED_APPS:
+
 ![alt text](images/installed_apps.PNG)
 
 The rest_framekwork.authtoken is to prevent unauthorized users from creating/deleting/editing information in our backend.
@@ -92,7 +94,8 @@ Create a new workspace and put http://localhost:8000/api/users/ with a POST call
 ![alt text](images/bad_request.PNG)
 
 Go to Body in Postman, select form-data, and add username and password in KEY column and select a new username to be created and a password. You should get 201 created response with the new username created, without showing you the password value.
-![alt text](images/210_response.PNG)
+
+![alt text](images/201_response.PNG)
 
 Now, go to your admin panel in localhost:8000 and go to Users to see the new user created.
 ![alt text](images/user_created.PNG)
@@ -128,7 +131,8 @@ python manage.py migrate
 ## References
 
 1) Video tutorial called [Django & ReactJS Full Stack Course [ Python Backend React Frontend ]](https://www.youtube.com/watch?v=VBqJ0-imSMU)
-2) [Serializer documentation](https://www.django-rest-framework.org/tutorial/1-serialization/)
+2) [Django documentation](https://docs.djangoproject.com/en/3.2/)
+3) [Serializer documentation](https://www.django-rest-framework.org/tutorial/1-serialization/)
 
 ## Why do we need to create a virtual environment
 

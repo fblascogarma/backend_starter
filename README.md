@@ -8,4 +8,4 @@ If you want to learn different ways of setting your backend using Django, check 
 
 # Follow the steps on the other README file
 
-Go to the backend folder to read the entire process of how to build a backend using Django explained in that README file.
+Go to the backend folder to [read the entire process of how to build a backend using Django](backend/README.md) explained in that README file and check the files to easily copy paste the code.
