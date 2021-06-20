@@ -22,7 +22,7 @@ python manage.py runserver
 To check that the server is running properly, in a new tab in your browser go to
 http://localhost:8000/
 You should see a spaceship and say the installation worked successfully.
-![alt text](images/Installation_ok)
+![alt text](images/Installation_ok.png)
  
 4) Learn how people are responding to a new important update or new feature release.
 5) It will help you build your product competitive matrix and segment customers.
