@@ -62,12 +62,12 @@ And you will need to input the username you want to create, an email, and a pass
 A model serializer is preferred over a serializer because it’s more succinct and clear to read. ModelSerializer will automatically generate a set of fields for you based on your model and validators for the serializer.
 
 11) Install django-cors-headers library by typing
+
 pip install django-cors-headers
+
 See image below of settings.py file in NAME_OF_PROJECT to see how the file should look like.
 
-Go to settings.py in NAME_OF_PROJECT folder and add rest_framework, rest_framework.authtoken, and api under INSTALLED_APPS:
-
-![alt text](images/installed_apps.PNG)
+![alt text](images/settings.PNG)
 
 The rest_framekwork.authtoken is to prevent unauthorized users from creating/deleting/editing information in our backend.
 
