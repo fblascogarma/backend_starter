@@ -4,6 +4,8 @@ This project will teach you how to quickly build a backend for your web app usin
 
 When you finish, you can use this project to customize it for your needs by creating your models, views (logic you want to apply on the backend with the info from your frontend), and API endpoints to communicate with your frontend.
 
+If you also need help setting up your frontend, see my repo for that [here](https://github.com/fblascogarma/frontend_starter). 
+
 If you want to learn different ways of setting your backend using Django, check out the references for more resources.
 
 # Steps
@@ -119,7 +121,7 @@ You are all set! Customize it for your web app. Read the next section to have a 
 
 The models.py file is where you will create the models to use in your backend. For example, if you have a sign-up for newsletters, you will need a model with the fields that the user completes when signing up. 
 
-The admin.py file is to register each new model you create.
+The admin.py file is to register each new model you create. Also, you will list the fields that you want to display in the api panel.
 
 The serializers.py file is to create serializer functions for your new models.
 
@@ -128,8 +130,11 @@ The views.py file is to create the view of your new model. Don't forget to impor
 The urls.py file in the api folder is to register endpoints so front can send data to back, and viceversa. 
 
 Don't forget to migrate the information after creating a new model by navigating to the folder that contains the manage.py file and type
+
 python manage.py makemigrations
+
 And then type
+
 python manage.py migrate
 
 ## References
