@@ -137,6 +137,20 @@ And then type
 
 python manage.py migrate
 
+If you want to rollback to a previous migration, type
+
+python manage.py api 0009_mytoken
+
+where api is the name of the app and 0009_mytoken is the version where you want to rollback.
+
+Then, you need to eliminate the migrations files that are wrong (thus why I wanted to rollback), and type again 
+
+python manage.py makemigrations
+
+And then type
+
+python manage.py migrate
+
 ## References
 
 1) Video tutorial called [Django & ReactJS Full Stack Course [ Python Backend React Frontend ]](https://www.youtube.com/watch?v=VBqJ0-imSMU)
